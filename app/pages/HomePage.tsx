@@ -1,5 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import Button from '../components/UI/Button';
+import { GlobalColors, GlobalSizes } from '../components/UI/colors';
 
 export default function Home() {
     return (
@@ -21,9 +23,9 @@ export default function Home() {
                 >
                     <Text style={ styles.homeTitle }>Одно из самых вкусных кофе в городе!</Text>
                     <Text style={ styles.homeSubtitle }>Свежие зёрна, настоящая арабика и бережная обжарка</Text>
-                    <TouchableOpacity style={ styles.homeButton }>
+                    <Button>
                         <Text style={ styles.homeButtonText }>Начать</Text>
-                    </TouchableOpacity>
+                    </Button>
                 </LinearGradient>
             </View>
         </View>
@@ -46,52 +48,42 @@ const styles = StyleSheet.create({
 
     linearGradient: {
         height: '100%',
-        paddingHorizontal: 30,
+        paddingHorizontal: GlobalSizes.s30,
 
-        gap: 16,
         justifyContent: 'flex-end',
+        gap: GlobalSizes.s16,
 
         position: 'relative',
-        bottom: 40
+        bottom: GlobalSizes.s40
     },
 
     homeContent: {
         height: '30%',
 
-        backgroundColor: 'rgba(0, 0, 0, 1)'
+        backgroundColor: GlobalColors.blackColor
     },
 
     homeTitle: {
-        fontSize: 34,
+        fontSize: GlobalSizes.s34,
         fontWeight: '600',
         textAlign: 'center',
 
-        color: 'rgba(255, 255, 255, 1)'
+        color: GlobalColors.whiteColor
     },
 
     homeSubtitle: {
-        fontSize: 14,
+        fontSize: GlobalSizes.s14,
         fontWeight: '400',
         textAlign: 'center',
         letterSpacing: 0.1,
 
-        color: 'rgba(169, 169, 169, 1)'
-    },
-
-    homeButton: {
-        paddingVertical: 20,
-        borderRadius: 16,
-        
-        justifyContent: 'center',
-        alignItems: 'center',
-
-        backgroundColor: 'rgba(198, 124, 78, 1)'
+        color: GlobalColors.grayColor
     },
 
     homeButtonText: {
-        fontSize: 16,
+        fontSize: GlobalSizes.s16,
         fontWeight: '600',
 
-        color: 'rgba(255, 255, 255, 1)'
+        color: GlobalColors.whiteColor
     }
 });
