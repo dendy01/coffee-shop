@@ -3,7 +3,8 @@ export const GlobalColors = {
     blackColor: '#000000ff',
 
     grayColor: '#a9a9a9ff',
-    orangeColor: '#c67c4eff'
+    orangeColor: '#c67c4eff',
+    orangeColor700: '#A76237'
 };
 
 export const GlobalSizes = {

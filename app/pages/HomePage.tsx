@@ -1,9 +1,27 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import { useEffect, useRef } from 'react';
+import { Animated, ImageBackground, StyleSheet, Text, View } from "react-native";
 import Button from '../components/UI/Button';
-import { GlobalColors, GlobalSizes } from '../components/UI/colors';
+import { GlobalColors, GlobalSizes } from "../components/UI/variables";
 
 export default function Home() {
+    const animatedTextValue = useRef(new Animated.Value(-100)).current;
+    const animatedOpasityValue = useRef(new Animated.Value(0)).current;
+
+    useEffect(() => {
+        Animated.timing(animatedTextValue, {
+            toValue: 0,
+            delay: 1000,
+            useNativeDriver: true
+        }).start();
+
+        Animated.timing(animatedOpasityValue, {
+            toValue: 1,
+            delay: 1000,
+            useNativeDriver: true
+        }).start();
+    }, []);
+
     return (
         <View style={ styles.home }>
             <View style={ styles.homeImage }>
@@ -21,7 +39,12 @@ export default function Home() {
                     start={{ x: 0, y: 0 }}
                     end={{ x: 0, y: 0.2 }}
                 >
-                    <Text style={ styles.homeTitle }>Одно из самых вкусных кофе в городе!</Text>
+                    <Animated.View style={ {
+                        transform: [{ translateY: animatedTextValue }],
+                        opacity: animatedOpasityValue
+                    } }>
+                        <Text style={ styles.homeTitle }>Одно из самых вкусных кофе в городе!</Text>
+                    </Animated.View>
                     <Text style={ styles.homeSubtitle }>Свежие зёрна, настоящая арабика и бережная обжарка</Text>
                     <Button>
                         <Text style={ styles.homeButtonText }>Начать</Text>

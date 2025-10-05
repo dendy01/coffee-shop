@@ -1,13 +1,49 @@
-import { Pressable, PressableProps, StyleSheet } from "react-native";
-import { GlobalColors, GlobalSizes } from "./colors";
+import { useRef } from "react";
+import { Animated, GestureResponderEvent, Pressable, PressableProps, StyleSheet } from "react-native";
+import { GlobalColors, GlobalSizes } from "./variables";
 
-export default function Button({ children, ...props }: PressableProps) {
+interface ButtonProps extends PressableProps
+{
+    children?: React.ReactNode;
+}
+
+export default function Button({ children, ...props }: ButtonProps) {
+    const animatedColorValue = useRef(new Animated.Value(100)).current;
+    const color = animatedColorValue.interpolate({
+        inputRange: [0, 100],
+        outputRange: [GlobalColors.orangeColor700, GlobalColors.orangeColor]
+    });
+
+    const startAnimation = (event: GestureResponderEvent) => {
+        Animated.spring(animatedColorValue, {
+            toValue: 0,
+            useNativeDriver: true
+        }).start();
+
+        props.onPressIn && props.onPressIn(event);
+    };
+
+    const endAnimation = (event: GestureResponderEvent) => {
+        Animated.spring(animatedColorValue, {
+            toValue: 100,
+            useNativeDriver: true
+        }).start();
+
+        props.onPressOut && props.onPressOut(event);
+    };
+
     return (
         <Pressable
             { ...props }
-            style={ styles.button }
+            onPressIn={ startAnimation }
+            onPressOut={ endAnimation }
         >
-            { children }
+            <Animated.View style={ {
+                ...styles.button,
+                backgroundColor: color
+            } }>
+                { children }
+            </Animated.View>
         </Pressable>
     )
 }
@@ -19,7 +55,5 @@ const styles = StyleSheet.create({
         
         justifyContent: 'center',
         alignItems: 'center',
-
-        backgroundColor: GlobalColors.orangeColor
     }
 });
