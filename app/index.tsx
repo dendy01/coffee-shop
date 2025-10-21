@@ -1,10 +1,10 @@
 import { StyleSheet, View } from 'react-native';
-import Home from './pages/HomePage';
+import Home from './screens/Home';
 
 export default function HomeScreen() {
 	return (
 		<View style={ styles.app }>
-			<Home></Home>
+			<Home />
 		</View>
 	);
 }

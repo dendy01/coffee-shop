@@ -2,7 +2,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useEffect, useRef } from 'react';
 import { Animated, ImageBackground, StyleSheet, Text, View } from 'react-native';
 import Button from '../components/UI/Button';
-import { GlobalColors, GlobalSizes } from '../components/UI/variables';
+import { GlobalColors, GlobalSizes } from '../components/variables';
+import { router } from 'expo-router';
 
 export default function Home() {
 	const animatedTextValue = useRef(new Animated.Value(-100)).current;
@@ -21,6 +22,10 @@ export default function Home() {
 			useNativeDriver: true
 		}).start();
 	}, []);
+
+	const goCatalog = () => {
+		router.push('/screens/Catalog');
+	};
 
 	return (
 		<View style={ styles.home }>
@@ -46,7 +51,7 @@ export default function Home() {
 						<Text style={ styles.homeTitle }>Одно из самых вкусных кофе в городе!</Text>
 					</Animated.View>
 					<Text style={ styles.homeSubtitle }>Свежие зёрна, настоящая арабика и бережная обжарка</Text>
-					<Button>
+					<Button onPress={ goCatalog }>
 						<Text style={ styles.homeButtonText }>Начать</Text>
 					</Button>
 				</LinearGradient>
@@ -87,6 +92,7 @@ const styles = StyleSheet.create({
 	},
 
 	homeTitle: {
+		fontFamily: 'FiraSansSemiBold',
 		fontSize: GlobalSizes.s34,
 		fontWeight: '600',
 		textAlign: 'center',
@@ -95,6 +101,7 @@ const styles = StyleSheet.create({
 	},
 
 	homeSubtitle: {
+		fontFamily: 'FiraSansRegular',
 		fontSize: GlobalSizes.s14,
 		fontWeight: '400',
 		textAlign: 'center',
@@ -104,6 +111,7 @@ const styles = StyleSheet.create({
 	},
 
 	homeButtonText: {
+		fontFamily: 'FiraSansSemiBold',
 		fontSize: GlobalSizes.s16,
 		fontWeight: '600',
 

@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { Animated, GestureResponderEvent, Pressable, PressableProps, StyleSheet } from 'react-native';
-import { GlobalColors, GlobalSizes } from './variables';
+import { GlobalColors, GlobalSizes } from '../variables';
 
 interface ButtonProps extends PressableProps
 {
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
 	button: {
 		paddingVertical: GlobalSizes.s20,
 		borderRadius: GlobalSizes.s16,
-        
+
 		justifyContent: 'center',
 		alignItems: 'center'
 	}
