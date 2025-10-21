@@ -5,7 +5,7 @@ export default function Success() {
 	return (
 		<View style={ styles.coffee }>
 			<Text>Success</Text>
-			<Link href={ '/' }>
+			<Link href={ '/screens/Catalog' }>
 				<Text>Назад</Text>
 			</Link>
 		</View>

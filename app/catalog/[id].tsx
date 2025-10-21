@@ -8,7 +8,7 @@ export default function DeskriptionCoffee() {
 		<View style={ styles.coffee }>
 			<Text>DeskriptionCoffee</Text>
 			<Text>Id coffee: { id }</Text>
-			<Link href={ '/' }>
+			<Link href={ '/screens/Catalog' }>
 				<Text>Назад</Text>
 			</Link>
 		</View>

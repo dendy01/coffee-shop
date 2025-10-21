@@ -1,13 +1,26 @@
-import { Stack } from 'expo-router';
+import { SplashScreen, Stack } from 'expo-router';
 import { StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
+import { useEffect } from 'react';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function Root() {
-	useFonts({
+	const [loader] = useFonts({
 		FiraSansRegular: require('@/assets/fonts/FiraSans-Regular.ttf'),
 		FiraSansSemiBold: require('@/assets/fonts/FiraSans-SemiBold.ttf')
 	});
+
+	useEffect(() => {
+		if (loader) {
+			SplashScreen.hideAsync();
+		}
+	});
+
+	if (!loader) {
+		return null;
+	}
 
 	return (
 		<>

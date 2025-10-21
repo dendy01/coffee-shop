@@ -5,7 +5,7 @@ export default function Address() {
 	return (
 		<View style={ styles.coffee }>
 			<Text>Address</Text>
-			<Link href={ '/' }>
+			<Link href={ '/screens/Catalog' }>
 				<Text>Назад</Text>
 			</Link>
 		</View>
