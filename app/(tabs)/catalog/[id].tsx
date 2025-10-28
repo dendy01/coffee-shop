@@ -1,4 +1,4 @@
-import { Link, useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import { View, Text, StyleSheet } from 'react-native';
 
 export default function DeskriptionCoffee() {
@@ -8,9 +8,7 @@ export default function DeskriptionCoffee() {
 		<View style={ styles.coffee }>
 			<Text>DeskriptionCoffee</Text>
 			<Text>Id coffee: { id }</Text>
-			<Link href={ '/screens/Catalog' }>
-				<Text>Назад</Text>
-			</Link>
+			<Text>В корзину</Text>
 		</View>
 	);
 }

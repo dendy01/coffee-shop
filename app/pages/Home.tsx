@@ -24,7 +24,7 @@ export default function Home() {
 	}, []);
 
 	const goCatalog = () => {
-		router.push('/screens/Catalog');
+		router.replace('/(tabs)/catalog/Catalog');
 	};
 
 	return (
