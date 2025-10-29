@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "coffee-shop",
-    "slug": "coffee-shop",
+    "name": "Coffee Shop",
+    "slug": "Coffee Shop",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/coffee-image.png",
     "scheme": "coffeeshop",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -30,7 +30,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/coffee-image.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff",
