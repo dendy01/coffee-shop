@@ -1,32 +1,35 @@
-import { GlobalColors } from '@/app/components/variables';
 import { Stack } from 'expo-router';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function CartRoot() {
 	return (
-		<Stack screenOptions={{
-			headerTitleAlign: 'center',
-			contentStyle: {
-				backgroundColor: GlobalColors.whiteColor
-			}
-		}}>
-			<Stack.Screen
-				name='Cart'
-				options={{
-					title: 'Заказ'
-				}}
-			/>
-			<Stack.Screen
-				name='Address'
-				options={{
-					title: 'Изменить адрес'
-				}}
-			/>
-			<Stack.Screen
-				name='Success'
-				options={{
-					title: 'Заказ оформлен!'
-				}}
-			/>
-		</Stack>
+		<SafeAreaProvider>
+			<Stack screenOptions={{
+				headerTitleAlign: 'center',
+				headerShadowVisible: false,
+				statusBarStyle: 'dark'
+			}}>
+				<Stack.Screen
+					name='Cart'
+					options={{
+						title: 'Заказ',
+						headerBackVisible: false
+					}}
+				/>
+				<Stack.Screen
+					name='Address'
+					options={{
+						title: 'Изменить адрес'
+					}}
+				/>
+				<Stack.Screen
+					name='Success'
+					options={{
+						title: 'Заказ оформлен!',
+						headerBackVisible: false
+					}}
+				/>
+			</Stack>
+		</SafeAreaProvider>
 	);
 }

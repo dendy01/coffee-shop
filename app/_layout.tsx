@@ -1,6 +1,4 @@
-import { SplashScreen, Stack, usePathname } from 'expo-router';
-import { StatusBar, StyleSheet } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Slot, SplashScreen, usePathname } from 'expo-router';
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
 
@@ -25,22 +23,5 @@ export default function Root() {
 
 	console.log(pathname);
 
-	return (
-		<>
-			<StatusBar barStyle={ 'light-content' }/>
-			<SafeAreaProvider style={ styles.root }>
-				<Stack screenOptions={{
-					headerShown: false
-				}}>
-					<Stack.Screen name='index'/>
-				</Stack>
-			</SafeAreaProvider>
-		</>
-	);
+	return (<Slot />);
 }
-
-const styles = StyleSheet.create({
-	root: {
-		position: 'relative'
-	}
-});
