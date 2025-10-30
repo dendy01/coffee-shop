@@ -1,8 +1,8 @@
-import { TextInput, StyleSheet, View, Pressable } from 'react-native';
+import { TextInput, StyleSheet, View, Pressable, TextInputProps } from 'react-native';
 import { GlobalColors, GlobalSizes } from '../variables';
 import SearchIcon from '@/assets/icons/SearchIcon';
 
-export default function Input() {
+export default function Input(props: TextInputProps) {
 	return (
 		<View>
 			<Pressable
@@ -11,8 +11,8 @@ export default function Input() {
 				<SearchIcon />
 			</Pressable>
 			<TextInput
+				{ ...props }
 				style={ styles.input }
-				placeholder='Найти кофе'
 				placeholderTextColor={ GlobalColors.grayColor700 }
 			/>
 		</View>

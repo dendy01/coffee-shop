@@ -1,4 +1,4 @@
-export interface CatalogCard {
+export interface Card {
     id: number;
     name: string;
     subTitle: string;

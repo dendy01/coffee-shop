@@ -1,16 +1,18 @@
 import { Link } from 'expo-router';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Pressable, ActivityIndicator } from 'react-native';
 import Input from '../../components/UI/Input';
 import { GlobalColors, GlobalSizes } from '../../components/variables';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import StatusBarBackground from '@/app/components/StatusBarBackground';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { CatalogCard } from '@/app/model/Card.model';
 import Coffee from '@/app/components/Coffee';
+import useCoffee from '@/app/stores/useCoffeeStore';
 
 export default function Catalog() {
 	const insets = useSafeAreaInsets();
+
+	const { cardsCoffee, isLoading, getAllCardsCoffee, filterCardsCoffee } = useCoffee();
+
 	const typeCoffee = [
 		{
 			name: 'Все',
@@ -33,40 +35,20 @@ export default function Catalog() {
 			type: 'americano'
 		}
 	];
+	const [searchCoffee, setSearchCoffee] = useState<string>('');
 	const [selectedCoffee, setSelectedCoffee] = useState<string>('all');
-	const [catalogCards, setCatalogCards] = useState<CatalogCard[]>();
 
 	useEffect(() => {
-		loadData();
+		getAllCardsCoffee();
 	}, []);
 
 	useEffect(() => {
-		switchCoffee();
-	}, [selectedCoffee]);
-
-	const loadData = async () => {
-		const { data } = await axios.get('https://purpleschool.ru/coffee-api/');
-
-		if (!data) {
-			return;
+		if (selectedCoffee === 'all' && !searchCoffee) {
+			getAllCardsCoffee();
+		} else {
+			filterCardsCoffee(searchCoffee, selectedCoffee);
 		}
-
-		setCatalogCards(data);
-
-		console.log(data);
-	};
-
-	const switchCoffee = async () => {
-		const { data } = await (selectedCoffee === 'all' ? axios.get('https://purpleschool.ru/coffee-api/') : axios.get(`https://purpleschool.ru/coffee-api/?type=${ selectedCoffee }`));
-
-		if (!data) {
-			return;
-		}
-
-		setCatalogCards(data);
-
-		console.log(data);
-	};
+	}, [searchCoffee, selectedCoffee]);
 
 	return (
 		<View style={ styles.coffee }>
@@ -75,7 +57,10 @@ export default function Catalog() {
 				<Link href={ '/(tabs)/cart/Address' }>
 					<Text style={ styles.coffeeLinkText }>Изменить адрес</Text>
 				</Link>
-				<Input />
+				<Input
+					placeholder={ 'Найти кофе' }
+					onChangeText={ setSearchCoffee }
+				/>
 			</View>
 			<View style={ styles.coffeeBody }>
 				<View style={ styles.buttons }>
@@ -99,7 +84,9 @@ export default function Catalog() {
 						))
 					}
 				</View>
-				{ catalogCards?.length ? <Coffee cards={ catalogCards as CatalogCard[] }/> : null }
+				{ isLoading && <ActivityIndicator size={ 'large' } /> }
+				{ (cardsCoffee.length === 0 && !isLoading) && <Text>Ничего не найдено</Text> }
+				{ cardsCoffee?.length > 0 && <Coffee cards={ cardsCoffee }/> }
 			</View>
 		</View>
 	);

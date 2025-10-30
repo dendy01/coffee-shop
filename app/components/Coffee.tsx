@@ -1,14 +1,11 @@
 import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
-import { CatalogCard } from '../model/Card.model';
+import { Card } from '../model/Card.model';
 import { GlobalColors, GlobalSizes } from './variables';
 import Button from './UI/Button';
 import { router } from 'expo-router';
 import StarIcon from '@/assets/icons/StarIcon';
 
-export default function Coffee({ cards }: { cards: CatalogCard[] }) {
-	console.log('Coffee:');
-	console.log(cards);
-
+export default function Coffee({ cards }: { cards: Card[] }) {
 	const goToDeskriptionCard = (id: number) => {
 		router.push(`/(tabs)/catalog/${ id }`);
 	};
