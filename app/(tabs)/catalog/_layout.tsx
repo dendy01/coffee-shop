@@ -1,3 +1,4 @@
+import { GlobalColors } from '@/app/components/variables';
 import { Stack } from 'expo-router';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -20,7 +21,10 @@ export default function CatalogLayout() {
 					options={{
 						title: 'Описание',
 						headerShown: true,
-						statusBarStyle: 'dark'
+						statusBarStyle: 'dark',
+						contentStyle: {
+							backgroundColor: GlobalColors.whiteColor
+						}
 					}}
 				/>
 			</Stack>
