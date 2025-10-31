@@ -1,12 +1,12 @@
 import { Link } from 'expo-router';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function Coffee() {
+export default function Address() {
 	return (
 		<View style={ styles.coffee }>
-			<Text>Coffee</Text>
-			<Link href={ '/' }>
-				<Text>Назад</Text>
+			<Text>Address</Text>
+			<Link href={ '/(tabs)/cart/Success' }>
+				<Text>Сохранить</Text>
 			</Link>
 		</View>
 	);

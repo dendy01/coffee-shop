@@ -1,6 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { useEffect, useRef } from 'react';
-import { Animated, ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { Animated, ImageBackground, StatusBar, StyleSheet, Text, View } from 'react-native';
 import Button from '../components/UI/Button';
 import { GlobalColors, GlobalSizes } from '../components/variables';
 import { router } from 'expo-router';
@@ -24,11 +24,12 @@ export default function Home() {
 	}, []);
 
 	const goCatalog = () => {
-		router.push('/screens/Catalog');
+		router.replace('/(tabs)/catalog/Catalog');
 	};
 
 	return (
 		<View style={ styles.home }>
+			<StatusBar barStyle={ 'light-content' } />
 			<View style={ styles.homeImage }>
 				<ImageBackground
 					source={ require('../../assets/images/coffee-image.png') }
