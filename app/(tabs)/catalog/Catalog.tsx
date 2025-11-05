@@ -43,11 +43,21 @@ export default function Catalog() {
 	}, []);
 
 	useEffect(() => {
+		let timer: number;
+
 		if (selectedCoffee === 'all' && !searchCoffee) {
 			getAllCardsCoffee();
 		} else {
-			filterCardsCoffee(searchCoffee, selectedCoffee);
+			timer = setTimeout(() => {
+				filterCardsCoffee(searchCoffee, selectedCoffee);
+			}, 500);
 		}
+
+		return () => {
+			if (timer) {
+				clearTimeout(timer);
+			}
+		};
 	}, [searchCoffee, selectedCoffee]);
 
 	return (

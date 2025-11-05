@@ -15,60 +15,68 @@ const useCoffee = create<CoffeeState>((set) => ({
 	isLoading: false,
 
 	getAllCardsCoffee: async () => {
-		set({
-			cardsCoffee: [],
-			isLoading: true
-		});
-
-		await new Promise((resolve) => {
-			setTimeout(() => {
-				resolve();
-			}, 2000);
-		});
-
-		const { data } = await axios.get<Card[]>(`${ PREFIX }/`);
-
-		if (!data) {
+		try {
 			set({
 				cardsCoffee: [],
-				isLoading: false
+				isLoading: true
 			});
 
-			return;
-		}
+			await new Promise((resolve) => {
+				setTimeout(() => {
+					resolve();
+				}, 2000);
+			});
 
-		set({
-			cardsCoffee: data,
-			isLoading: false
-		});
+			const { data } = await axios.get<Card[]>(`${ PREFIX }/`);
+
+			if (!data) {
+				set({
+					cardsCoffee: [],
+					isLoading: false
+				});
+
+				return;
+			}
+
+			set({
+				cardsCoffee: data,
+				isLoading: false
+			});
+		} catch (error) {
+			console.log(error);
+		}
 	},
 	filterCardsCoffee: async (text: string, type: string) => {
-		set({
-			cardsCoffee: [],
-			isLoading: true
-		});
-
-		await new Promise((resolve) => {
-			setTimeout(() => {
-				resolve();
-			}, 2000);
-		});
-
-		const { data } = type === 'all' ? await axios.get<Card[]>(`${ PREFIX }/?text=${ text }`) : await axios.get<Card[]>(`${ PREFIX }/?type=${ type }&text=${ text }`);
-
-		if (!data) {
+		try {
 			set({
 				cardsCoffee: [],
-				isLoading: false
+				isLoading: true
 			});
 
-			return;
-		}
+			await new Promise((resolve) => {
+				setTimeout(() => {
+					resolve();
+				}, 2000);
+			});
 
-		set({
-			cardsCoffee: data,
-			isLoading: false
-		});
+			const { data } = type === 'all' ? await axios.get<Card[]>(`${ PREFIX }/?text=${ text }`) : await axios.get<Card[]>(`${ PREFIX }/?type=${ type }&text=${ text }`);
+
+			if (!data) {
+				set({
+					cardsCoffee: [],
+					isLoading: false
+				});
+
+				return;
+			}
+
+			set({
+				cardsCoffee: data,
+				isLoading: false
+			});
+		} catch (error) {
+			console.log(error);
+		}
 	}
 }));
 
